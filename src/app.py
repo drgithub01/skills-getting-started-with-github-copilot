@@ -65,3 +65,56 @@ def signup_for_activity(activity_name: str, email: str):
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
+
+# Validate student is not already signed up
+    if email in activity["participants"]:
+        raise HTTPException(status_code=400, detail="Student already signed up for this activity")
+
+    # Validate max participants not exceeded
+    if len(activity["participants"]) >= activity["max_participants"]:
+        raise HTTPException(status_code=400, detail="Activity is full")
+
+        # Add student
+        activity["participants"].append(email)
+        return {"message": f"Signed up {email} for {activity_name}"}
+
+
+    # Add more activities to the database
+    activities.update({
+        "Basketball": {
+            "description": "Team sport focusing on basketball skills and game strategy",
+            "schedule": "Mondays and Wednesdays, 4:00 PM - 5:30 PM",
+            "max_participants": 15,
+            "participants": []
+        },
+        "Tennis Club": {
+            "description": "Learn tennis techniques and participate in friendly matches",
+            "schedule": "Tuesdays and Thursdays, 4:00 PM - 5:30 PM",
+            "max_participants": 10,
+            "participants": []
+        },
+        "Debate Club": {
+            "description": "Develop public speaking and critical thinking skills through debate",
+            "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+            "max_participants": 16,
+            "participants": []
+        },
+        "Mathematics Olympiad": {
+            "description": "Advanced problem-solving and mathematical theory",
+            "schedule": "Saturdays, 10:00 AM - 12:00 PM",
+            "max_participants": 20,
+            "participants": []
+        },
+        "Drama Club": {
+            "description": "Theater performances and acting workshops",
+            "schedule": "Thursdays, 4:00 PM - 5:30 PM",
+            "max_participants": 25,
+            "participants": []
+        },
+        "Digital Art Workshop": {
+            "description": "Learn digital design, animation, and visual arts",
+            "schedule": "Tuesdays, 3:30 PM - 5:00 PM",
+            "max_participants": 12,
+            "participants": []
+        }
+    })
